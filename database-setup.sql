@@ -1,3 +1,5 @@
+CREATE DATABASE ExpenseTracker;
+USE ExpenseTracker;
 CREATE TABLE Expenses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE NOT NULL,
