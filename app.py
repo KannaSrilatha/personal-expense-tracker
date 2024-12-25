@@ -9,11 +9,26 @@ conn = mysql.connector.connect(
 )
 cursor = conn.cursor()
 
+from datetime import datetime
+
+def get_valid_date():
+    while True:
+        date_input = input("Enter the date of the expense (YYYY-MM-DD): ")
+        try:
+            # Try to parse the date
+            valid_date = datetime.strptime(date_input, "%Y-%m-%d")
+            return valid_date.strftime("%Y-%m-%d")  # Return the validated date as a string
+        except ValueError:
+            print("Invalid date. Please enter the date in YYYY-MM-DD format.")
+
+
 # Function to add an expense with user inputs
 def add_expense():
     # Prompt user for input
-    date = input("Enter the date of the expense (YYYY-MM-DD): ")
+    # date = input("Enter the date of the expense (YYYY-MM-DD): ")
     category = input("Enter the category of the expense (e.g., Food, Transport): ")
+    date = get_valid_date()
+    print(f"Validated date: {date}")
     try:
         amount = float(input("Enter the amount: "))
     except ValueError:
